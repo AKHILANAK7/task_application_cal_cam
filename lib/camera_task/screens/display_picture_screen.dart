@@ -107,6 +107,12 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+          backgroundColor: const Color(0xFFF7F3FF),
+          centerTitle: false,
+          title: const Text('RadicalStart'),
+        ),
       body: ValueListenableBuilder<bool>(
         valueListenable: _isLoadingNotifier,
         builder: (context, isLoading, child) {
@@ -119,41 +125,19 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: 40.0,
-                    height: 40.0,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
-                    ),
-                    child: IconButton(
-                      icon: const Icon(Icons.arrow_back_ios_new),
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 10.0, left: 16),
-                    child: Text(
-                      'Take a photo of document',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                  const Center(
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10.0, left: 16),
+                      child: Center(
+                        child: Text(
+                          'Upload image',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black,
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                  const Padding(
-                    padding: EdgeInsets.only(left: 16, top: 5),
-                    child: Text(
-                      'Please ensure photos are clear and visible',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.black,
-                        fontWeight: FontWeight.normal,
-                      ),
-                      textAlign: TextAlign.left,
                     ),
                   ),
                   const SizedBox(height: 20),
@@ -162,11 +146,10 @@ class _DisplayPictureScreenState extends State<DisplayPictureScreen> {
                     builder: (context, imagePath, child) {
                       return Center(
                         child: Container(
-                          width: 200,
-                          height: 270,
+                          width: 350,
+                          height: 350,
                           decoration: BoxDecoration(
-                            border:
-                                Border.all(color: Colors.blueAccent, width: 3),
+                            borderRadius: BorderRadius.circular(10),
                           ),
                           child: Image.file(
                             File(imagePath),
