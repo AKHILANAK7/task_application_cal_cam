@@ -92,7 +92,7 @@ class CalculatorScreen extends StatelessWidget {
                 onPressed: () => controller.input(button),
                 child: Text(
                   button,
-                  style: TextStyle(fontSize: 37, color: textColor),
+                  style: TextStyle(fontSize: 32, color: textColor),
                 ),
               ),
             ),

@@ -86,7 +86,7 @@ Widget _buildButtonRow(BuildContext context, List<String> buttons) {
               onPressed: () => context.read<CalculatorProvider>().input(button),
               child: Text(
                 button,
-                style: TextStyle(fontSize: 37,color: textColor),
+                style: TextStyle(fontSize: 32,color: textColor),
               ),
             ),
           ),
