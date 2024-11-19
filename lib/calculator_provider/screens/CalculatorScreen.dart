@@ -18,32 +18,22 @@ class CalculatorScreenProvider extends StatelessWidget {
         ),
         body: Column(
           children: [
+            // Calculator Display Section
             Expanded(
-              flex: 2,
-              child: Column(
-                children: [
-                  _buildButtonRow(context, ["C", "٪", "⌫", "÷"]),
-                  _buildButtonRow(context, ["7", "8", "9", "x"]),
-                  _buildButtonRow(context, ["4", "5", "6", "-"]),
-                  _buildButtonRow(context, ["3", "2", "1", "+"]),
-                  _buildButtonRow(context, [".", "0", "00","="]),
-                ],
-              )
-            ),
-            Container(
-              height: 210,
-              child: Expanded(
-                child: Container(
-                  decoration: BoxDecoration(color: const Color.fromARGB(255, 236, 231, 231),borderRadius: BorderRadius.circular(30),),
-                  width: 400,
-                  alignment: Alignment.bottomRight,
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 24,
-                    vertical: 48,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    mainAxisAlignment: MainAxisAlignment.end,
+              flex: 1,
+              child: Container(
+                decoration: BoxDecoration(
+                  color: const Color.fromARGB(255, 236, 231, 231),
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 16,
+                ),
+                alignment: Alignment.bottomRight,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
                       calculator.output,
@@ -52,16 +42,29 @@ class CalculatorScreenProvider extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+                    const SizedBox(height: 8),
                     Text(
                       calculator.equation,
                       style: const TextStyle(
                         fontSize: 24,
-                        color: Colors.grey
+                        color: Colors.grey,
                       ),
                     ),
                   ],
                 ),
-                ),
+              ),
+            ),
+            // Calculator Buttons Section
+            Expanded(
+              flex: 2,
+              child: Column(
+                children: [
+                  _buildButtonRow(context, ["C", "٪", "⌫", "÷"]),
+                  _buildButtonRow(context, ["7", "8", "9", "x"]),
+                  _buildButtonRow(context, ["4", "5", "6", "-"]),
+                  _buildButtonRow(context, ["3", "2", "1", "+"]),
+                  _buildButtonRow(context, [".", "0", "00", "="]),
+                ],
               ),
             ),
           ],
@@ -86,7 +89,7 @@ Widget _buildButtonRow(BuildContext context, List<String> buttons) {
               onPressed: () => context.read<CalculatorProvider>().input(button),
               child: Text(
                 button,
-                style: TextStyle(fontSize: 32,color: textColor),
+                style: TextStyle(fontSize: 32, color: textColor),
               ),
             ),
           ),
@@ -96,20 +99,18 @@ Widget _buildButtonRow(BuildContext context, List<String> buttons) {
   );
 }
 
- Color _getButtonColor(String button) {
-    if (button == "C" || button == "٪" || button == "⌫") {
-      return Colors.grey.shade300;
-    } else if (button == "÷" ||
-        button == "x" ||
-        button == "-" ||
-        button == "+") {
-      return Colors.orange;
-    } else if (button == "=") {
-      return const Color.fromARGB(255, 55, 2, 248);
-    } else {
-      return const Color.fromARGB(255, 233, 244, 251);
-    }
+Color _getButtonColor(String button) {
+  if (button == "C" || button == "٪" || button == "⌫") {
+    return Colors.grey.shade300;
+  } else if (button == "÷" || button == "x" || button == "-" || button == "+") {
+    return Colors.orange;
+  } else if (button == "=") {
+    return const Color.fromARGB(255, 55, 2, 248);
+  } else {
+    return const Color.fromARGB(255, 233, 244, 251);
   }
+}
+
 Color _getTextColor(String button) {
   if (button == "C" || button == "٪" || button == "⌫") {
     return Colors.black; // Black text for utility buttons
@@ -121,4 +122,3 @@ Color _getTextColor(String button) {
     return Colors.black; // Black text for numbers
   }
 }
-
